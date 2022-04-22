@@ -1,6 +1,9 @@
 package de.fayedev.watchybackend.web;
 
-import com.uwetrottmann.tmdb2.entities.*;
+import com.uwetrottmann.tmdb2.entities.GenreResults;
+import com.uwetrottmann.tmdb2.entities.Movie;
+import com.uwetrottmann.tmdb2.entities.TvSeason;
+import com.uwetrottmann.tmdb2.entities.TvShow;
 import de.fayedev.watchybackend.exception.ApplicationException;
 import de.fayedev.watchybackend.model.tmdb.SearchResult;
 import de.fayedev.watchybackend.model.tmdb.dto.SearchRequest;
