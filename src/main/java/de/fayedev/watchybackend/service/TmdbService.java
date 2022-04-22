@@ -2,6 +2,7 @@ package de.fayedev.watchybackend.service;
 
 import com.uwetrottmann.tmdb2.Tmdb;
 import com.uwetrottmann.tmdb2.entities.*;
+import com.uwetrottmann.tmdb2.enumerations.AppendToResponseItem;
 import de.fayedev.watchybackend.exception.ApplicationException;
 import de.fayedev.watchybackend.exception.ApplicationExceptionCode;
 import de.fayedev.watchybackend.model.tmdb.SearchResult;
@@ -48,7 +49,9 @@ public class TmdbService {
 
     public Movie getMovieInfo(int movieId) {
         try {
-            return tmdb.moviesService().summary(movieId, LANGUAGE).execute().body();
+            AppendToResponse appendToResponse = new AppendToResponse(AppendToResponseItem.SIMILAR, AppendToResponseItem.RECOMMENDATIONS,
+                    AppendToResponseItem.KEYWORDS, AppendToResponseItem.CREDITS, AppendToResponseItem.VIDEOS);
+            return tmdb.moviesService().summary(movieId, LANGUAGE, appendToResponse).execute().body();
         } catch (IOException e) {
             throw new ApplicationException(HttpStatus.FAILED_DEPENDENCY, ApplicationExceptionCode.TMDB_FAILED, LogMessage.TMDB_FAILED);
         }
