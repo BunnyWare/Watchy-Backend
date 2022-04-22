@@ -1,8 +1,6 @@
 package de.fayedev.watchybackend.web;
 
-import com.uwetrottmann.tmdb2.entities.Movie;
-import com.uwetrottmann.tmdb2.entities.TvSeason;
-import com.uwetrottmann.tmdb2.entities.TvShow;
+import com.uwetrottmann.tmdb2.entities.*;
 import de.fayedev.watchybackend.exception.ApplicationException;
 import de.fayedev.watchybackend.model.tmdb.SearchResult;
 import de.fayedev.watchybackend.model.tmdb.dto.SearchRequest;
@@ -57,5 +55,10 @@ public class TmdbRestController {
     @GetMapping("/movies/{id}")
     public Movie getMovie(@PathVariable("id") @NotNull Integer id) throws ApplicationException {
         return tmdbService.getMovieInfo(id);
+    }
+
+    @GetMapping("/genres")
+    public GenreResults getGenres() throws ApplicationException {
+        return tmdbService.getGenres();
     }
 }

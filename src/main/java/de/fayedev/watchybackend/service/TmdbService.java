@@ -73,4 +73,11 @@ public class TmdbService {
         }
     }
 
+    public GenreResults getGenres() {
+        try {
+            return tmdb.genreService().movie(LANGUAGE).execute().body();
+        } catch (IOException e) {
+            throw new ApplicationException(HttpStatus.FAILED_DEPENDENCY, ApplicationExceptionCode.TMDB_FAILED, LogMessage.TMDB_FAILED);
+        }
+    }
 }
